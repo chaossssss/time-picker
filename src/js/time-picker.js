@@ -87,7 +87,7 @@ var pickuptime = {
     },
     run: function(f) {
         var c = this.marketgetTime();
-        console.log('run c:',c)
+        // console.log('run c:',c)
         var a = "",a2 = "",_this = this,g = 0;
         var e = this.createHtmlMethod(c,c[3],c[3]);
 
