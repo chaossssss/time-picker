@@ -99,7 +99,9 @@ var pickuptime = {
         }
         $(".timePickerCon").append(e);
         // var d = $(window).height() - $(".pickuptime-title").offset().top;
-        // $(".pickuptime-close-empty").css("height", d + "px");
+        var timePickerConHeight = $(".timePickerCon").css("height");
+        console.log('timePickerConHeight',timePickerConHeight);
+        $("#pickuptimeContener").css("top",timePickerConHeight)
         $(".pickuptime-close-empty,.pickuptime-close").on("click", function() {
             $("#pickuptimeContener").remove()
             $(".timePickerCon").empty()
