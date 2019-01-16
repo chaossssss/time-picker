@@ -98,8 +98,8 @@ var pickuptime = {
             $("#pickuptimeContener").remove()
         }
         $(".timePickerCon").append(e);
-        var d = $(window).height() - $(".pickuptime-title").offset().top;
-        $(".pickuptime-close-empty").css("height", d + "px");
+        // var d = $(window).height() - $(".pickuptime-title").offset().top;
+        // $(".pickuptime-close-empty").css("height", d + "px");
         $(".pickuptime-close-empty,.pickuptime-close").on("click", function() {
             $("#pickuptimeContener").remove()
             $(".timePickerCon").empty()
