@@ -92,7 +92,7 @@ var pickuptime = {
         var c = this.marketgetTime();
         // console.log('run c:',c)
         var a = "",a2 = "",_this = this,g = 0;
-        var e = this.createHtmlMethod(c,c[3],c[3]);
+        var e = this.createHtmlMethod(c,c[3]+1,c[3]+1);
 
         if ($("#pickuptimeContener").length > 0) {
             $("#pickuptimeContener").remove()
@@ -115,6 +115,7 @@ var pickuptime = {
                 $("ul.t1").html(t1Html)
             }
             $(this).addClass("pickuptime-data-on").siblings().removeClass("pickuptime-data-on")
+        	event.stopPropagation();
         });
         $("#pickuptimeContener").on("click",".spickuptime",function(event){
         	$(this).addClass("spickuptime-on").siblings().removeClass("spickuptime-on");
