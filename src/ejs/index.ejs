@@ -11,19 +11,30 @@
 			height: 60px;
 			position: relative;
 		}
+		.timePickerConBox {
+			width: 400px;
+			height: 60px;
+			position: relative;
+			border: 1px solid #000;
+		}
 		</style>
 	</head>
 	<body>
-		<div class="timePickerCon"></div>
+		<div class="timePickerConBox">点击
+			<div class="timePickerCon"></div>
+		</div>
 		<div class="timePickerBox">
 			点击
 		</div>
+		<div id="sj"></div>
 		<script type="text/javascript" src="/js/time-picker.js"></script>
 		<script type="text/javascript">
-			$(".timePickerBox").on("click",function(){
+			$(".timePickerConBox").on("click",function(){
 				pickuptime.init(0,function(data){
-					console.log(data.split(" "));//回调
-					// $("#sj").html(data.split(" "));
+					var data = data
+					console.log(data)
+					// console.log(data.split(" "));//回调
+					// $(".timePickerCon").html(data.split(" "));
 				});
 			})
 		</script>

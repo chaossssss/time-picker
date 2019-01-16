@@ -3,6 +3,9 @@ var pickuptime = {
         this.setuptime = a;
         this.run(b)
     },
+    destroy:function(){
+
+    },
     marketgetTime: function() {
         var k = this.setuptime;
         var g = new Date();
@@ -81,8 +84,8 @@ var pickuptime = {
     createHtmlMethod: function(c,t1Num,t2Num){
     	var t1 = this.t1HtmlMethod(t1Num);
     	var t2 = this.t2HtmlMethod(t2Num);
-    	var e = "<div id='pickuptimeContener'><div class='pickuptime-close-empty'></div><div id='pickuptime'><p class='pickuptime-title'><div class='pickuptime-title-date-text'>日期</div><div class='pickuptime-title-time-text'>时间</div></p><div class='pickuptime-box'><div class='pickuptime-data'><p class='pickuptime-datap pickuptime-data-on'>" + c[0] + "</p><p class='pickuptime-datap'>" + c[1] + "</p><p class='pickuptime-datap'>" + c[2] + "</p></div>";
-    	e += "<div class='scroll-pbox'><ul id='t1' class='t1'>" + t1 + "</ul></div><div class='scroll-pbox'><ul id='t2' class='t2'>" + t2 + "</ul></div></div><div class='pickuptime-close'>关闭</div></div>";
+    	var e = "<div id='pickuptimeContener'><div class='pickuptime-close-empty'></div><div id='pickuptime'><p class='pickuptime-title'><div class='pickuptime-title-date-text'>日期</div><div class='pickuptime-title-time-text'>时间</div></p><div class='pickuptime-box clearfix'><div class='pickuptime-data float_left'><p class='pickuptime-datap pickuptime-data-on'>" + c[0] + "</p><p class='pickuptime-datap'>" + c[1] + "</p><p class='pickuptime-datap'>" + c[2] + "</p></div>";
+    	e += "<div class='scroll-pbox float_left'><ul id='t1' class='t1'>" + t1 + "</ul></div><div class='scroll-pbox float_left'><ul id='t2' class='t2'>" + t2 + "</ul></div></div><div class='pickuptime-close'>关闭</div></div>";
     	return e;
     },
     run: function(f) {
@@ -99,8 +102,9 @@ var pickuptime = {
         $(".pickuptime-close-empty").css("height", d + "px");
         $(".pickuptime-close-empty,.pickuptime-close").on("click", function() {
             $("#pickuptimeContener").remove()
+            $(".timePickerCon").empty()
         });
-        $(".timePickerCon").on("click",".pickuptime-datap", function() {
+        $("#pickuptimeContener").on("click",".pickuptime-datap", function() {
             g = $(this).index();
             $("ul.t1,ul.t2").html("");
             if (g != 0) {
@@ -112,19 +116,22 @@ var pickuptime = {
             }
             $(this).addClass("pickuptime-data-on").siblings().removeClass("pickuptime-data-on")
         });
-        $(".timePickerCon").on("click",".spickuptime",function(){
+        $("#pickuptimeContener").on("click",".spickuptime",function(event){
         	$(this).addClass("spickuptime-on").siblings().removeClass("spickuptime-on");
         	var t2h = $(this).text().split(":")[0];
         	$("ul.t2").html("");
         	var _t2Html = _this.t2HtmlMethod(Number(t2h));
         	$("ul.t2").html(_t2Html);
+        	event.stopPropagation();
         })
-        $(".timePickerCon").on("click",".pickuptime", function() {
+        $("#pickuptimeContener").on("click",".pickuptime", function(event) {
             $(this).addClass("pickuptime-on").siblings().removeClass("pickuptime-on");
-            var g = $(".pickuptime-data-on").text() + " " + $(".spickuptime-on").text() + " " + $(".pickuptime-on").text();
-            $(".pickuptime-close-empty").click();
+            var Str = $(".pickuptime-data-on").text() + " " + $(".spickuptime-on").text() + " " + $(".pickuptime-on").text();
+            // $(".pickuptime-close-empty").click();
+            $("#pickuptimeContener").remove()
+            event.stopPropagation();
             if (Object.prototype.toString.call(f) === "[object Function]") {
-                f(g)
+                f(Str)
             } else {
                 return false
             }
